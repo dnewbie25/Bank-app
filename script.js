@@ -1,10 +1,7 @@
 'use strict';
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// BANKIST APP
-
-// Data
+// ======================================
+//Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -35,7 +32,8 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-// Elements
+// ============================================
+//Elements
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.balance__value');
@@ -61,7 +59,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-//////////////////////////////////////////
+//==================================
 // displayMovements
 let order = 'newest';
 
@@ -92,14 +90,6 @@ function createUserNames(user) {
   user.username = initials.join('')
   return user.username
 }
-///////////////////////////////// functional way
-// const users = accounts.map(acc =>
-//   acc.owner
-//   .toLocaleLowerCase()
-//   .split(' ')
-//   .map(name => name[0])
-//   .join('')
-// )
 
 // classic way and more readable for me
 const users = accounts.map(name => createUserNames(name));
@@ -127,11 +117,6 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-// accumulator is like a snowball
-const balance = movements.reduce((acc, current) => acc + current, 0);
-
 // calc and print balance for the current user
 
 const calcAndPrintBalance = (movements, interest) => {
@@ -141,14 +126,6 @@ const calcAndPrintBalance = (movements, interest) => {
   labelSumOut.textContent = formatCurrency(calcOutcomes(movements))
   labelSumInterest.textContent = formatCurrency(calcInterest(movements, interest))
 }
-
-// const max = movements.reduce((acc, current) => {
-//   if (acc >= current) {
-//     return acc
-//   } else {
-//     return current
-//   }
-// }, movements[0])
 
 function formatCurrency(value) {
   return new Intl.NumberFormat('de-DE', {
@@ -188,7 +165,7 @@ function updateUI(currentAccount) {
   calcAndPrintBalance(currentAccount.movements, currentAccount.interestRate)
 }
 
-/////////////////////////////////
+//=================================
 // transfer event
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
@@ -248,7 +225,7 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.blur();
 })
 
-// sorting button
+// sorting button - sorts transactions by date, from recent to oldest and vice versa
 btnSort.addEventListener('click', function () {
   if (order === 'newest') {
     order = 'oldest';
@@ -257,17 +234,3 @@ btnSort.addEventListener('click', function () {
   }
   updateUI(loggedUser);
 })
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-// const currencies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound sterling'],
-// ]);
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
