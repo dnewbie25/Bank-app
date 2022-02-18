@@ -1,6 +1,6 @@
 # Bank Functional Frontend
 
-This is a version of a minimalist banking app. You will be able to use one of the 4 accounts already created to interact with the app.
+This is a version of a minimalist banking app. You will be able to use one of the 4 accounts already created to interact with the app. The app design is not mine. Credits go to https://github.com/jonasschmedtmann
 
 ## Table of contents
 
